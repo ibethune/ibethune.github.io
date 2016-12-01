@@ -1,0 +1,9 @@
+A:link		{text-decoration: none}
+A:active		{text-decoration: none}
+A:visited		{text-decoration: none}
+A:hover		{text-decoration: underline}
+
+BODY		{
+		font: 10pt 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
+		margin: 2% 5%;
+		}
