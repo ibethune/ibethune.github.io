@@ -1,0 +1,132 @@
+@SET BASIS_SET_H OPT1
+@SET BASIS_SET_Li OPT1
+@SET BASIS_SET_N 6-31G*
+@SET RESFILE li2nh_fd3m_111_wop
+@SET PROJECT_NAME li2nh_fd3m_111_nmr
+@SET BASIS_SET_FILE EMSL_BASIS_SETS_MLB1
+@SET POTENTIAL_FILE POTENTIAL
+@SET ABC 21.296 9.723 7.274
+@SET XYZ ./li2nh_fd3m_111_copt.xyz
+
+
+&GLOBAL
+  PROJECT ${PROJECT_NAME}
+  PRINT_LEVEL LOW
+  RUN_TYPE LINEAR_RESPONSE
+  WALLTIME 34000
+  &TIMINGS
+    TIME_MPI
+    THRESHOLD 0.00000001
+  &END TIMINGS
+&END GLOBAL
+
+&FORCE_EVAL
+  &DFT
+    BASIS_SET_FILE_NAME ${BASIS_SET_FILE}
+    POTENTIAL_FILE_NAME ${POTENTIAL_FILE}
+    RESTART_FILE_NAME ${RESFILE}-RESTART.wfn
+    &MGRID
+      CUTOFF 300
+      NGRIDS 5
+      REL_CUTOFF 50
+    &END MGRID
+    &QS
+      METHOD GAPW
+    &END QS
+    &SCF
+       EPS_SCF     1.01E-07
+      &OUTER_SCF
+        OPTIMIZER DIIS
+        MAX_SCF 20
+        EPS_SCF     1.01E-07
+      &END OUTER_SCF
+      SCF_GUESS RESTART
+      MAX_SCF 20
+      &OT
+        ALGORITHM IRAC
+        PRECONDITIONER FULL_ALL
+      &END OT
+    &END SCF
+    &XC
+      &XC_FUNCTIONAL BLYP
+      &END XC_FUNCTIONAL
+    &END XC
+    &LOCALIZE
+      MAX_ITER 10000
+      METHOD JACOBI
+      EPS_LOCALIZATION 1.0E-5
+      OUT_ITER_EACH 10
+##      RESTART
+        &PRINT
+          &WANNIER_CENTERS
+          &END
+          &LOC_RESTART
+          &END
+        &END
+    &END
+  &END DFT
+
+  &PROPERTIES
+    &LINRES
+       &LOCALIZE
+         MAX_ITER 10000
+         METHOD JACOBI
+         EPS_LOCALIZATION 1.0E-5
+##         RESTART
+         &PRINT
+          &LOC_RESTART
+          &END
+         &END
+       &END
+       PRECONDITIONER FULL_KINETIC
+#       EPS 1E-14
+        EPS 1E-11
+       MAX_ITER 1000
+       &CURRENT
+         CHI_PBC T
+         GAUGE ATOM
+         ORBITAL_CENTER WANNIER
+#         ORBITAL_CENTER ATOM
+       &END CURRENT
+       &NMR
+         INTERPOLATE_SHIFT T
+         &PRINT
+            &CHI_TENSOR
+            &END
+            &SHIELDING_TENSOR
+            &END
+         &END
+      &END
+    &END
+  &END
+
+  &SUBSYS
+    &CELL
+      ABC ${ABC}
+    &END CELL
+    &KIND H
+      LEBEDEV_GRID 100
+      RADIAL_GRID 200
+      BASIS_SET ${BASIS_SET_H}
+      POTENTIAL ALL
+    &END KIND
+    &KIND Li
+      LEBEDEV_GRID 100
+      RADIAL_GRID 200
+      BASIS_SET ${BASIS_SET_Li}
+      POTENTIAL ALL
+    &END KIND
+    &KIND N
+      LEBEDEV_GRID 100
+      RADIAL_GRID 200
+      BASIS_SET ${BASIS_SET_N}
+      POTENTIAL ALL
+   &END KIND
+     &Topology
+       COORDINATE XYZ
+       COORD_FILE_NAME  ${XYZ}
+       CONNECTIVITY OFF
+    &END Topology
+  &END SUBSYS
+&END FORCE_EVAL
+

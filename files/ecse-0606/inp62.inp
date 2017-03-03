@@ -1,0 +1,148 @@
+&EXT_RESTART
+RESTART_FILE_NAME AIMD_H2O_BN-1.restart 
+RESTART_THERMOSTAT T
+RESTART_POS  T
+RESTART_VEL  T
+RESTART_COUNTERS  F
+&END EXT_RESTART
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &DFT
+BASIS_SET_FILE_NAME BASIS_MOLOPT
+POTENTIAL_FILE_NAME POTENTIAL
+    &MGRID
+      CUTOFF 460
+      NGRIDS 5
+    &END MGRID
+    &QS
+     EXTRAPOLATION ASPC
+     EXTRAPOLATION_ORDER 4
+     EPS_DEFAULT 1.0E-12
+     MAP_CONSISTENT
+    &END QS
+    &SCF
+      EPS_SCF 1.0E-6
+       MAX_SCF 200
+       SCF_GUESS RESTART
+     &OT T
+      MINIMIZER DIIS
+      LINESEARCH 2PNT
+      PRECONDITIONER FULL_SINGLE_INVERSE #FULL_ALL
+     &END OT
+    &END SCF
+    &XC
+ &XC_FUNCTIONAL
+   &LIBXC
+    FUNCTIONAL XC_GGA_X_OPTB88_VDW
+   &END LIBXC
+        &VWN
+        &END VWN
+   &END XC_FUNCTIONAL
+      &vdW_POTENTIAL
+         DISPERSION_FUNCTIONAL NON_LOCAL
+         &NON_LOCAL
+           TYPE DRSLL
+           VERBOSE_OUTPUT
+           KERNEL_FILE_NAME vdW_kernel_table.dat
+&END NON_LOCAL
+&END vdW_POTENTIAL
+       &XC_GRID
+       XC_DERIV SPLINE2_smooth
+       &END XC_GRID
+    &END XC
+   &PRINT
+    &E_DENSITY_CUBE
+     &EACH
+      MD 1000
+     &END
+    &END
+  &END PRINT
+  &END DFT
+  &SUBSYS
+    &CELL
+ABC  26.082 25.0974 40.0 
+#PERIODIC XY
+&END
+&COORD
+@INCLUDE 'water_BN_initial_condition.xyz'
+  &END COORD
+      &KIND N
+       BASIS_SET  DZVP-MOLOPT-SR-GTH-q5 
+        POTENTIAL GTH-PBE-q5
+      &END KIND
+      &KIND B
+       BASIS_SET  DZVP-MOLOPT-SR-GTH-q3 
+        POTENTIAL GTH-PBE-q3
+      &END KIND
+      &KIND O
+       BASIS_SET  DZVP-MOLOPT-SR-GTH-q6 
+        POTENTIAL GTH-PBE-q6
+      &END KIND
+      &KIND H
+        BASIS_SET DZVP-MOLOPT-SR-GTH-q1 
+        POTENTIAL GTH-PBE-q1
+        MASS 2.0
+      &END KIND
+
+
+    &END SUBSYS
+
+  &END FORCE_EVAL
+ &GLOBAL
+    PROJECT AIMD_H2O_BN
+    RUN_TYPE MD
+    PRINT_LEVEL LOW
+    WALLTIME 42840
+  &END GLOBAL
+  &MOTION
+    &MD
+      ENSEMBLE NVT
+      STEPS 10 !900
+      TIMESTEP 1.0
+      TEMPERATURE 330
+      COMVEL_TOL  [angstrom*ps^-1] 1.0E-7
+      TEMP_KIND
+      &PRINT
+       &TEMP_KIND
+       &END
+      &END
+      &THERMOSTAT
+        TYPE NOSE
+        REGION MASSIVE 
+   &NOSE
+      LENGTH 4
+      TIMECON 1000.
+      MTS 2
+    &END NOSE
+      &END
+    &END MD
+    &PRINT
+      &FORCES
+       UNIT eV*angstrom^-1
+      &END
+      &TRAJECTORY
+      &END
+      &VELOCITIES
+      &END
+      &RESTART
+        &EACH
+          MD 10
+        &END
+      &END
+      &RESTART_HISTORY
+        &EACH
+          MD 100
+        &END
+      &END
+    &END
+
+
+     &GEO_OPT
+       OPTIMIZER BFGS
+       MAX_ITER 1000
+     &END GEO_OPT
+
+
+  &END MOTION
+
