@@ -1,0 +1,11 @@
+<map id="System::GetVelocity" name="System::GetVelocity">
+<area shape="rect" id="node2" href="$class_continuous_tempering___t_a_m_d.html#afc0618885ec88485433622309bb7d456" title="Integrate positions and velocities over time dt using Langevin Dynamics. " alt="" coords="405,71,559,112"/>
+<area shape="rect" id="node3" href="$class_integrator.html#a5f50073b30fb0b69232cebf5a24a8e1f" title="Integrates all particle positions by dt. " alt="" coords="196,195,357,222"/>
+<area shape="rect" id="node4" href="$class_langevin_integrator.html#a1b7f8d30a9963c759b89fa6a1ed9daec" title="Integrate positions and velocities over time dt using Langevin Dynamics. " alt="" coords="415,5,549,47"/>
+<area shape="rect" id="node6" href="$class_t_a_m_d.html#abb55b6dfedfdd93e7d3b166794531532" title="Integrate positions and velocities over time dt using Langevin Dynamics. " alt="" coords="435,385,529,411"/>
+<area shape="rect" id="node10" href="$class_integrator.html#ab0502688f659ff45cc8d9a7d9ad51619" title="Integrates all particle velocities by dt. " alt="" coords="197,145,357,171"/>
+<area shape="rect" id="node5" href="$class_leapfrog_integrator.html#a1236c287e157256b416fcaf240e447ca" title="Integrate positions and velocities over time dt using the Verlet Leapfrog algorithm. " alt="" coords="416,319,548,360"/>
+<area shape="rect" id="node7" href="$class_verlet_integrator.html#aaa244cad8cfe1eddc8b227ca6066d4df" title="Integrate positions and velocities over time dt using the Velocity Verlet algorithm. " alt="" coords="407,137,557,163"/>
+<area shape="rect" id="node8" href="$class_yoshida4_integrator.html#aefa15be6950453b5311ed193d4965334" title="Integrate positions and velocities over time dt using Yoshida&#39;s 4th&#45;order algorithm. " alt="" coords="415,188,549,229"/>
+<area shape="rect" id="node9" href="$class_yoshida8_integrator.html#a1ae263abd8de15728a7f462712c5e38a" title="Integrate positions and velocities over time dt using Yoshida&#39;s 8th&#45;order algorithm. " alt="" coords="415,253,549,295"/>
+</map>

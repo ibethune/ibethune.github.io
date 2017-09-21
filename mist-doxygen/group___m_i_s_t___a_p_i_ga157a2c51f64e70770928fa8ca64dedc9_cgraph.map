@@ -1,0 +1,8 @@
+<map id="MIST_GetNDoF" name="MIST_GetNDoF">
+<area shape="rect" id="node2" href="$class_integrator.html#a19b6312d179c3770052aa8b0c83047d6" title="Getter for the system pointer. " alt="" coords="203,5,355,32"/>
+<area shape="rect" id="node3" href="$group___i_n_t_e_g_r_a_t_o_r___i_n_t_e_r_f_a_c_e.html#gac84c78dbec20d2c9325de93606c6e0b7" title="Getter for the global number of particles. " alt="" coords="177,56,381,83"/>
+<area shape="rect" id="node4" href="$class_integrator.html#a5fb224e40a31e8ef4e9d1d0736762ba5" title="Getter for the total number of constraints. " alt="" coords="177,107,381,133"/>
+<area shape="rect" id="node6" href="$class_integrator.html#a2114b5067dfe3af68e39168fe74e939d" title="Test if this integrator conserves momentum or not. " alt="" coords="171,157,388,184"/>
+<area shape="rect" id="node7" href="$group___i_n_t_e_g_r_a_t_o_r___i_n_t_e_r_f_a_c_e.html#gaead9e30a336900a237f0e8777cc82151" title="System::HasPBC" alt="" coords="217,208,342,235"/>
+<area shape="rect" id="node5" href="$class_constraint_solver.html#a9ea59e05ec74704bbdcd9d9bf855538c" title="Gets the total number of constraints. " alt="" coords="436,99,613,141"/>
+</map>

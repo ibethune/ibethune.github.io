@@ -1,0 +1,4 @@
+<map id="MIST_Step" name="MIST_Step">
+<area shape="rect" id="node2" href="$class_integrator.html#a6edbc87d50a23dc788fee9ac0378e1bd" title="Computes an integration step from t to t+dt. " alt="" coords="143,5,256,32"/>
+<area shape="rect" id="node3" href="$group___m_i_s_t___a_p_i.html#gaf4e52d4dabd1cab43eba12fc4b24b88e" title="Closes down the MIST library, ready for exit. " alt="" coords="144,56,255,83"/>
+</map>
